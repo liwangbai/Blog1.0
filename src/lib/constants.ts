@@ -1,9 +1,9 @@
 export const SITE = {
   title: "WPY's Blog",
   description: 'Personal blog and portfolio — thoughts on full-stack development, AI, and more.',
-  url: 'https://yourdomain.com',
+  url: 'https://wpyai.cn',
   author: 'WPY',
-  locale: 'en-US',
+  locale: 'zh-CN',
 } as const;
 
 export const PAGINATION = {

@@ -7,7 +7,7 @@ interface PostMetaProps {
 }
 
 export function PostMeta({ date, readingTime, tags }: PostMetaProps) {
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
+  const formattedDate = new Intl.DateTimeFormat('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
