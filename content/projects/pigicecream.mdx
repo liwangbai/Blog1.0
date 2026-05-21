@@ -1,0 +1,75 @@
+---
+name: "PigIceCream"
+description: "面向《剑侠情缘网络版叁》玩家的交友社区 Android App，支持发帖交友、筛选搜索、即时聊天。"
+techStack: ["kotlin", "android", "mvvm", "retrofit", "room", "coil"]
+featured: true
+order: 3
+status: "completed"
+year: 2025
+---
+
+面向《剑侠情缘网络版叁》（剑网3）玩家的交友社区 Android App。玩家可以在社区中发帖交友，通过门派、体型、玩法等筛选条件找到心仪的竞技场队友、吃鸡队友、情缘或亲友，互相关注后即可聊天。
+
+<a href="/app_packages/icecream.apk" className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-gray-700 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200 transition-colors no-underline">
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+  </svg>
+  下载 APK 安装包
+</a>
+
+## 运行环境
+
+- Android 7.0 (API 24) 及以上
+- Kotlin 1.8.0 + Java 11
+- Android Gradle Plugin 7.4.2
+
+## 核心功能
+
+- **社区浏览**：查看玩家发布的交友帖子，支持图文详情
+- **发帖交友**：创建包含文字和图片的交友帖，标注门派、体型、玩法偏好
+- **筛选搜索**：按门派（20个）、角色体型、玩法类型（PVP/PVE/PVX）精准筛选
+- **即时聊天**：互相关注后解锁聊天功能，未互关仅可发送一条消息
+- **个人中心**：用户资料管理、关注/粉丝列表
+
+## 技术栈
+
+| 类别 | 技术 |
+|------|------|
+| 语言 | Kotlin 1.8.0 |
+| 架构 | MVVM（Jetpack ViewModel + LiveData + DataBinding） |
+| 网络 | Retrofit 2.7.2 + Moshi 1.13.0 |
+| 图片 | Coil 1.4.0 |
+| 数据库 | Room + Kotlin Coroutines 1.6.1 |
+| 路由 | ARouter 1.5.2 |
+| 日志 | XLog |
+
+## 模块结构
+
+```text
+├── app/                     # 主应用入口（Application、Splash、MainActivity）
+├── basicLib/                # 基础库
+│   ├── core/                # MVVM 基类（BaseActivity/BaseViewModel/BaseFragment）、依赖注入
+│   ├── database/            # Room 数据库、DAO、Repository 接口、SessionManager
+│   ├── retrofit/            # Retrofit 网络请求封装与服务定义
+│   ├── coil/                # Coil 图片加载封装
+│   ├── utils/               # 通用工具（Toast、网络监控、举报弹窗）
+│   ├── arouter/             # ARouter 路由封装
+│   └── customwidget/        # 自定义 UI 组件
+├── business/                # 业务模块
+│   ├── home/                # 首页社区（帖子列表、帖子详情）
+│   ├── message/             # 消息聊天
+│   ├── me/                  # 个人中心（用户资料、登录注册）
+│   ├── create/              # 发帖功能
+│   └── discovery/           # 发现页
+├── featureLib/              # 功能库
+│   └── PictureSelector/     # 图片选择器
+├── IProvider/               # 跨模块接口定义
+└── specs/                   # 需求规范文档
+```
+
+## 编码规范
+
+- 语言优先使用 Kotlin，遵循 [Kotlin 编码规范](https://kotlinlang.org/docs/coding-conventions.html)
+- 注释统一使用中文
+- 架构遵循 MVVM，保持关注点分离
+- UI 遵循 Material Design 3 规范

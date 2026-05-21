@@ -1,22 +1,26 @@
 import Link from 'next/link';
+import { getDictionary } from '@/i18n/get-dictionary';
 
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
   basePath: string;
+  locale: string;
 }
 
-export function Pagination({ currentPage, totalPages, basePath }: PaginationProps) {
+export function Pagination({ currentPage, totalPages, basePath, locale }: PaginationProps) {
   if (totalPages <= 1) return null;
 
+  const dict = getDictionary(locale);
+
   return (
-    <nav className="flex items-center justify-center gap-2 pt-8" aria-label="Pagination">
+    <nav className="flex items-center justify-center gap-2 pt-8" aria-label={dict.common.pagination}>
       {currentPage > 1 && (
         <Link
           href={`${basePath}?page=${currentPage - 1}`}
           className="rounded-lg border border-gray-200 dark:border-gray-800 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
         >
-          Previous
+          {dict.common.previous}
         </Link>
       )}
 
@@ -39,7 +43,7 @@ export function Pagination({ currentPage, totalPages, basePath }: PaginationProp
           href={`${basePath}?page=${currentPage + 1}`}
           className="rounded-lg border border-gray-200 dark:border-gray-800 px-3 py-2 text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
         >
-          Next
+          {dict.common.next}
         </Link>
       )}
     </nav>

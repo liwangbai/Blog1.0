@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "首页",
+    "blog": "博客",
+    "projects": "项目",
+    "about": "关于"
+  },
+  "home": {
+    "greeting": "你好，我是 WPY",
+    "subtitle": "全栈开发者，热衷于用现代 Web 技术构建优秀产品。撰写 TypeScript、React、Rust 和系统设计相关内容。",
+    "readBlog": "阅读博客",
+    "viewProjects": "查看项目",
+    "latestPosts": "最新文章",
+    "featuredProjects": "精选项目",
+    "viewAll": "查看全部 →"
+  },
+  "blog": {
+    "title": "博客",
+    "description": "关于全栈开发、TypeScript、React 等话题的文章。",
+    "pageDesc": "关于开发、设计和技术的一些思考。",
+    "backToBlog": "返回博客",
+    "readMore": "阅读更多 →",
+    "minRead": "分钟阅读",
+    "noPosts": "暂无文章，请稍后再来！",
+    "postNotFound": "文章未找到"
+  },
+  "projects": {
+    "title": "项目",
+    "description": "我构建和参与过的项目展示。",
+    "pageDesc": "我构建和参与过的一些作品。",
+    "backToProjects": "返回项目",
+    "sourceCode": "源代码",
+    "liveDemo": "在线演示",
+    "noProjects": "暂无项目，请稍后再来！",
+    "projectNotFound": "项目未找到"
+  },
+  "about": {
+    "title": "关于",
+    "description": "了解更多关于 WPY 的信息——背景、技能和联系方式。",
+    "aboutMe": "关于我",
+    "aboutMeDesc": "一些关于我的背景和所做的事情。",
+    "background": "背景",
+    "background1": "我是一名全栈开发者，热衷于构建架构良好的软件。我非常关注开发者体验、性能优化，以及编写简洁、可维护的代码。",
+    "background2": "我的编程之旅始于对网站运行原理的好奇，由此从前端深入到后端，从 JavaScript 到 TypeScript、Rust 和 Go。我喜欢贯穿整个技术栈的工作——从设计数据库模式到打造响应式用户界面。",
+    "background3": "不写代码的时候，你会发现我在阅读系统设计相关的书籍，参与开源项目，或者在这个博客上记录我学到的东西。",
+    "skills": "技能",
+    "contact": "联系方式",
+    "contactText": "欢迎通过以下方式联系我",
+    "or": "或"
+  },
+  "common": {
+    "previous": "上一页",
+    "next": "下一页",
+    "back": "返回",
+    "skipToContent": "跳转到内容",
+    "toggleTheme": "切换主题",
+    "copyright": "© {year} {author}. 保留所有权利。",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "twitter": "Twitter",
+    "pagination": "分页"
+  },
+  "error": {
+    "notFound": "404",
+    "notFoundDesc": "您要查找的页面不存在。",
+    "goHome": "返回首页",
+    "somethingWrong": "出了点问题",
+    "errorDesc": "发生了意外错误。请重试。",
+    "tryAgain": "重试"
+  }
+}

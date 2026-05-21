@@ -12,13 +12,6 @@ export const PAGINATION = {
   featuredProjectsCount: 3,
 } as const;
 
-export const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/about', label: 'About' },
-] as const;
-
 export const SOCIAL_LINKS = {
   github: 'https://github.com',
   linkedin: 'https://linkedin.com',

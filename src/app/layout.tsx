@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { SITE } from '@/lib/constants';
-import { ThemeProvider } from 'next-themes';
+import { cookieName, defaultLocale } from '@/i18n/settings';
+import { Providers } from '@/components/layout/providers';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import './globals.css';
@@ -42,24 +44,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get(cookieName)?.value || defaultLocale;
+
   return (
     <html
-      lang="zh-CN"
+      lang={locale}
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers initialLocale={locale}>
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-white dark:focus:bg-gray-950 focus:px-4 focus:py-2 focus:text-gray-900 dark:focus:text-white focus:shadow-lg focus:outline-none"
@@ -71,7 +71,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

@@ -2,10 +2,22 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { NAV_LINKS } from '@/lib/constants';
+import { getDictionary } from '@/i18n/get-dictionary';
 
-export function MobileNav() {
+interface MobileNavProps {
+  locale: string;
+}
+
+export function MobileNav({ locale }: MobileNavProps) {
   const [open, setOpen] = useState(false);
+  const dict = getDictionary(locale);
+
+  const navLinks = [
+    { href: '/', label: dict.nav.home },
+    { href: '/blog', label: dict.nav.blog },
+    { href: '/projects', label: dict.nav.projects },
+    { href: '/about', label: dict.nav.about },
+  ];
 
   return (
     <>
@@ -28,7 +40,7 @@ export function MobileNav() {
       {open && (
         <div className="fixed inset-0 top-16 z-40 bg-white dark:bg-gray-950 md:hidden">
           <nav className="flex flex-col gap-4 p-6">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

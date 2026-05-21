@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import { getProjectBySlug, getAllProjectSlugs } from '@/lib/projects';
 import { mdxOptions } from '@/lib/mdx';
 import { SITE } from '@/lib/constants';
+import { getDictionary } from '@/i18n/get-dictionary';
+import { cookieName, defaultLocale } from '@/i18n/settings';
 import { BackLink } from '@/components/ui/back-link';
 import { Tag } from '@/components/ui/tag';
 import type { ProjectFrontmatter } from '@/types/project';
@@ -23,7 +26,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
 
-  if (!project) return { title: 'Project Not Found' };
+  const cookieStore = await cookies();
+  const locale = cookieStore.get(cookieName)?.value || defaultLocale;
+  const dict = getDictionary(locale);
+
+  if (!project) return { title: dict.projects.projectNotFound };
 
   return {
     title: project.frontmatter.name,
@@ -40,6 +47,10 @@ export async function generateMetadata({
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
+
+  const cookieStore = await cookies();
+  const locale = cookieStore.get(cookieName)?.value || defaultLocale;
+  const dict = getDictionary(locale);
 
   if (!project) notFound();
 
@@ -74,7 +85,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
                 </svg>
-                Source Code
+                {dict.projects.sourceCode}
               </a>
             )}
             {project.frontmatter.liveUrl && (
@@ -87,7 +98,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                 </svg>
-                Live Demo
+                {dict.projects.liveDemo}
               </a>
             )}
           </div>
@@ -99,7 +110,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       </article>
 
       <div className="mt-12 border-t border-gray-200 dark:border-gray-800 pt-8">
-        <BackLink href="/projects" label="Back to projects" />
+        <BackLink href="/projects" label={dict.projects.backToProjects} locale={locale} />
       </div>
     </div>
   );
