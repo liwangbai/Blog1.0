@@ -10,7 +10,7 @@ const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 
 export async function getAllPosts(): Promise<Post[]> {
   const entries = await fs.readdir(POSTS_DIR);
-  const files = entries.filter((f) => f.endsWith('.mdx'));
+  const files = entries.filter((f) => f.endsWith('.mdx') && !f.startsWith('._'));
 
   const posts = await Promise.all(
     files.map(async (filename) => {

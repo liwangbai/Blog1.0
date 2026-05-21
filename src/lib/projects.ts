@@ -9,7 +9,7 @@ const PROJECTS_DIR = path.join(process.cwd(), 'content/projects');
 
 export async function getAllProjects(): Promise<Project[]> {
   const entries = await fs.readdir(PROJECTS_DIR);
-  const files = entries.filter((f) => f.endsWith('.mdx'));
+  const files = entries.filter((f) => f.endsWith('.mdx') && !f.startsWith('._'));
 
   const projects = await Promise.all(
     files.map(async (filename) => {
