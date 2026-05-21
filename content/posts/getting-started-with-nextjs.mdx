@@ -1,0 +1,83 @@
+---
+title: "Getting Started with Next.js App Router"
+description: "A hands-on guide to building your first Next.js application with the App Router, including routing, layouts, and data fetching strategies."
+date: "2026-05-01"
+tags: ["nextjs", "react", "typescript", "web-development"]
+featured: true
+---
+
+Next.js 15+ introduces the App Router as the primary way to build React applications. This guide walks through the core concepts.
+
+## What is the App Router?
+
+The App Router is built on React Server Components, which means your components run on the server by default. This leads to better performance and smaller client-side bundles.
+
+## Key Concepts
+
+### Server Components
+
+In the App Router, every component in the `app/` directory is a **Server Component** by default. You only opt into client-side rendering when you need interactivity:
+
+```tsx
+'use client';
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+### File-Based Routing
+
+The file system determines your routes:
+
+- `app/page.tsx` → `/`
+- `app/blog/page.tsx` → `/blog`
+- `app/blog/[slug]/page.tsx` → `/blog/my-post`
+
+### Layouts
+
+Layouts persist across navigations and do not re-render. They are perfect for shared UI like headers and footers:
+
+```tsx
+// app/layout.tsx
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
+```
+
+## Data Fetching
+
+Next.js supports multiple data fetching strategies:
+
+| Strategy | When to Use |
+|----------|-------------|
+| Static (SSG) | Content known at build time |
+| Dynamic (SSR) | Content changes per request |
+| ISR | Content changes periodically |
+
+## Getting Started
+
+```bash
+npx create-next-app@latest my-app --typescript --tailwind --app
+cd my-app
+npm run dev
+```
+
+Visit `http://localhost:3000` to see your app running!
+
+> This is just the beginning. The App Router has much more to offer including streaming, partial prerendering, and server actions.

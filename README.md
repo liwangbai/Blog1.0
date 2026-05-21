@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WPY's Blog
+
+A personal blog and portfolio built with modern web technologies.
+
+## Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Content**: MDX with `next-mdx-remote`
+- **Code Highlighting**: Shiki + rehype-pretty-code
+- **Theme**: Dark mode via `next-themes`
+- **Deployment**: Docker with standalone output
+
+## Features
+
+- Blog with MDX content, code highlighting, and reading time estimates
+- Project portfolio
+- RSS feed (`/feed.xml`)
+- Auto-generated sitemap
+- SEO metadata with Open Graph and Twitter cards
+- Dark mode with system preference detection
+- Responsive design
+- Custom 404 and error pages
+- Docker support with multi-stage builds
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm run start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dev server runs at [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── content/             # MDX content files
+│   ├── posts/           # Blog posts
+│   └── projects/        # Portfolio projects
+├── src/
+│   ├── app/             # Next.js App Router pages
+│   │   ├── blog/        # Blog routes
+│   │   ├── projects/    # Project routes
+│   │   ├── about/       # About page
+│   │   ├── feed.xml/    # RSS feed
+│   │   └── sitemap.ts   # Sitemap generation
+│   ├── components/      # React components
+│   │   ├── blog/        # Blog-specific components
+│   │   ├── home/        # Home page sections
+│   │   ├── layout/      # Header, footer, navigation
+│   │   ├── projects/    # Project-specific components
+│   │   └── ui/          # Reusable UI components
+│   ├── lib/             # Utilities (MDX parsing, reading time)
+│   └── types/           # TypeScript type definitions
+├── Dockerfile           # Multi-stage Docker build
+└── next.config.ts       # Next.js configuration
+```
 
-## Learn More
+## Adding Content
 
-To learn more about Next.js, take a look at the following resources:
+### Blog Posts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create an MDX file in `content/posts/` with frontmatter:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```mdx
+---
+title: "Your Post Title"
+description: "A brief description"
+date: "2026-01-15"
+tags: ["nextjs", "typescript"]
+featured: true
+---
 
-## Deploy on Vercel
+Your content here...
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Projects
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Create an MDX file in `content/projects/` with frontmatter:
+
+```mdx
+---
+title: "Project Name"
+description: "Project description"
+tags: ["react", "node"]
+featured: true
+github: "https://github.com/username/repo"
+demo: "https://demo.example.com"
+---
+
+Project details...
+```
+
+## Docker
+
+```bash
+docker build -t blog .
+docker run -p 3000:3000 blog
+```
+
+## License
+
+MIT

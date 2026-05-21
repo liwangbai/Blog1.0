@@ -1,0 +1,66 @@
+---
+title: "TypeScript Patterns for Better Code"
+description: "Explore practical TypeScript patterns that improve type safety, reduce bugs, and make your codebase more maintainable."
+date: "2026-04-20"
+tags: ["typescript", "patterns", "best-practices"]
+featured: true
+---
+
+TypeScript offers powerful type system features beyond basic annotations. Here are patterns I use daily.
+
+## Discriminated Unions
+
+Discriminated unions let you model states that share a common field:
+
+```typescript
+type RequestState<T> =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: T }
+  | { status: 'error'; error: Error };
+
+function handleState(state: RequestState<User>) {
+  switch (state.status) {
+    case 'idle':
+      // state is { status: 'idle' }
+      break;
+    case 'loading':
+      // state is { status: 'loading' }
+      break;
+    case 'success':
+      // state.data is User
+      console.log(state.data.name);
+      break;
+    case 'error':
+      // state.error is Error
+      console.error(state.error.message);
+      break;
+  }
+}
+```
+
+## Const Assertions
+
+Use `as const` to get literal types and read-only guarantees:
+
+```typescript
+const COLORS = ['red', 'green', 'blue'] as const;
+// type: readonly ["red", "green", "blue"]
+
+type Color = (typeof COLORS)[number];
+// type: "red" | "green" | "blue"
+```
+
+## Template Literal Types
+
+Build complex string types:
+
+```typescript
+type EventName = `on${Capitalize<string>}`;
+// "onClick", "onChange", etc.
+
+type CSSUnit = `${number}${'px' | 'rem' | 'em'}`;
+// "16px", "1.5rem", "2em"
+```
+
+These patterns dramatically improve the developer experience and catch entire categories of bugs at compile time.

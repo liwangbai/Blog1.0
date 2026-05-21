@@ -1,0 +1,34 @@
+---
+name: "Personal Blog & Portfolio"
+description: "This personal blog and portfolio site built with Next.js, TypeScript, and Tailwind CSS. Features SSG, dark mode, and MDX-based content management."
+techStack: ["nextjs", "typescript", "tailwindcss", "mdx", "vercel"]
+repoUrl: "https://github.com"
+liveUrl: "https://yourdomain.com"
+featured: true
+order: 1
+status: "active"
+year: 2026
+---
+
+This website you're looking at right now! It was built from the ground up with modern web technologies.
+
+## Key Features
+
+- **Fully Static**: All pages are pre-rendered at build time for maximum performance
+- **MDX Content**: Blog posts and project descriptions written in MDX with syntax highlighting
+- **Dark Mode**: System preference detection with manual toggle
+- **Responsive**: Looks great on any screen size
+- **SEO Optimized**: Open Graph, sitemap, RSS feed, structured data
+
+## Architecture
+
+The site uses Next.js App Router with a clean data layer:
+
+```
+content/         # MDX content files
+src/lib/         # Data access layer
+src/components/  # Reusable UI components
+src/app/         # Routes and layouts
+```
+
+Everything is a Server Component by default. Only the theme toggle and mobile nav use client-side interactivity.
