@@ -1,7 +1,8 @@
 import { cookies } from 'next/headers';
-import { SITE, SOCIAL_LINKS } from '@/lib/constants';
+import { SITE } from '@/lib/constants';
 import { getDictionary } from '@/i18n/get-dictionary';
 import { cookieName, defaultLocale } from '@/i18n/settings';
+import { SocialLinks } from './SocialLinks';
 
 export async function Footer() {
   const cookieStore = await cookies();
@@ -16,32 +17,17 @@ export async function Footer() {
             .replace('{year}', String(new Date().getFullYear()))
             .replace('{author}', SITE.author)}
         </p>
-        <div className="flex items-center gap-4">
-          <a
-            href={SOCIAL_LINKS.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          >
-            {dict.common.github}
-          </a>
-          <a
-            href={SOCIAL_LINKS.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          >
-            {dict.common.linkedin}
-          </a>
-          <a
-            href={SOCIAL_LINKS.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          >
-            {dict.common.twitter}
-          </a>
-        </div>
+        <SocialLinks githubLabel={dict.common.github} />
+      </div>
+      <div className="flex justify-center border-t border-gray-200 dark:border-gray-800 py-4">
+        <a
+          href="http://beian.miit.gov.cn/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          渝ICP备2026009814号
+        </a>
       </div>
     </footer>
   );
