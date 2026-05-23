@@ -8,6 +8,8 @@ import { Hero } from '@/components/home/hero';
 import { FeaturedPosts } from '@/components/home/featured-posts';
 import { FeaturedProjects } from '@/components/home/featured-projects';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const [featuredPosts, featuredProjects] = await Promise.all([
     getFeaturedPosts(PAGINATION.featuredPostsCount),
