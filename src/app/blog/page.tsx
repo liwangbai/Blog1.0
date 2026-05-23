@@ -8,6 +8,8 @@ import { PageHeader } from '@/components/ui/page-header';
 import { BlogList } from '@/components/blog/blog-list';
 import { Pagination } from '@/components/ui/pagination';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const locale = cookieStore.get(cookieName)?.value || defaultLocale;

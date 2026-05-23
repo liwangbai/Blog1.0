@@ -28,7 +28,7 @@ export function SocialLinks({ githubLabel }: { githubLabel: string }) {
             <img
               src="/images/wechat_addme.jpg"
               alt="WeChat QR Code"
-              className="w-64 h-64 rounded-lg shadow-lg"
+              className="w-64 rounded-lg shadow-lg"
             />
           </div>
         </div>

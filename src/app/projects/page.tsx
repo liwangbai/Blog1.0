@@ -6,6 +6,8 @@ import { cookieName, defaultLocale } from '@/i18n/settings';
 import { PageHeader } from '@/components/ui/page-header';
 import { ProjectGrid } from '@/components/projects/project-grid';
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const locale = cookieStore.get(cookieName)?.value || defaultLocale;
