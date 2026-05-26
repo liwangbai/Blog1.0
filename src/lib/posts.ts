@@ -10,7 +10,9 @@ const POSTS_DIR = path.join(process.cwd(), 'content/posts');
 
 export async function getAllPosts(): Promise<Post[]> {
   const entries = await fs.readdir(POSTS_DIR);
-  const files = entries.filter((f) => f.endsWith('.mdx') && !f.startsWith('._'));
+  const files = entries.filter(
+    (f) => (f.endsWith('.mdx') || f.endsWith('.md')) && !f.startsWith('._'),
+  );
 
   const posts = await Promise.all(
     files.map(async (filename) => {
@@ -43,26 +45,32 @@ export async function getAllPosts(): Promise<Post[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-  try {
-    const raw = await fs.readFile(
-      path.join(POSTS_DIR, `${slug}.mdx`),
-      'utf8',
-    );
+  const extensions = ['.mdx', '.md'];
 
-    const { frontmatter: fm } = await compileMDX<PostFrontmatter>({
-      source: raw,
-      options: { parseFrontmatter: true, ...mdxOptions },
-    });
+  for (const ext of extensions) {
+    try {
+      const raw = await fs.readFile(
+        path.join(POSTS_DIR, `${slug}${ext}`),
+        'utf8',
+      );
 
-    return {
-      slug,
-      frontmatter: fm,
-      source: raw,
-      readingTime: calculateReadingTime(raw),
-    };
-  } catch {
-    return null;
+      const { frontmatter: fm } = await compileMDX<PostFrontmatter>({
+        source: raw,
+        options: { parseFrontmatter: true, ...mdxOptions },
+      });
+
+      return {
+        slug,
+        frontmatter: fm,
+        source: raw,
+        readingTime: calculateReadingTime(raw),
+      };
+    } catch {
+      continue;
+    }
   }
+
+  return null;
 }
 
 export async function getFeaturedPosts(
