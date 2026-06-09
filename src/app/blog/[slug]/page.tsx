@@ -56,7 +56,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
   const { content } = await compileMDX<PostFrontmatter>({
     source: post.source,
-    options: mdxOptions,
+    options: { parseFrontmatter: true, ...mdxOptions },
   });
 
   return (

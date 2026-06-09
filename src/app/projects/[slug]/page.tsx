@@ -56,7 +56,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const { content } = await compileMDX<ProjectFrontmatter>({
     source: project.source,
-    options: mdxOptions,
+    options: { parseFrontmatter: true, ...mdxOptions },
   });
 
   return (

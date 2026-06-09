@@ -5,6 +5,7 @@ import { getDictionary } from '@/i18n/get-dictionary';
 import { cookieName, defaultLocale } from '@/i18n/settings';
 import { Tag } from '@/components/ui/tag';
 import { PageHeader } from '@/components/ui/page-header';
+import { WeChatContact } from '@/components/ui/wechat-contact';
 
 export const dynamic = 'force-dynamic';
 
@@ -76,7 +77,7 @@ export default async function AboutPage() {
           <p className="mt-4 text-gray-600 dark:text-gray-400">
             {dict.about.contactText}{' '}
             <a
-              href="https://github.com"
+              href="https://github.com/liwangbai"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-900 dark:text-white underline hover:no-underline"
@@ -84,14 +85,7 @@ export default async function AboutPage() {
               {dict.common.github}
             </a>
             {' '}{dict.about.or}{' '}
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-900 dark:text-white underline hover:no-underline"
-            >
-              {dict.common.linkedin}
-            </a>
+            <WeChatContact label={dict.common.wechat} />
           </p>
         </section>
       </div>
