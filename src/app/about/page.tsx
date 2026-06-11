@@ -21,18 +21,25 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const SKILLS = [
+  // AI & Agent
+  'LangChain',
+  'LangGraph',
+  'MCP',
+  'RAG',
+  'Prompt Engineering',
+  'Agent Architecture',
+  // Android
+  'Android Jetpack',
+  'Kotlin',
+  'Java',
+  'MVVM',
+  'Performance Tuning',
+  // Full-Stack
   'TypeScript',
-  'React',
-  'Next.js',
-  'Node.js',
+  'React / Next.js',
   'Python',
-  'Go',
-  'Rust',
   'PostgreSQL',
   'Docker',
-  'Kubernetes',
-  'AWS',
-  'GraphQL',
 ];
 
 export default async function AboutPage() {
